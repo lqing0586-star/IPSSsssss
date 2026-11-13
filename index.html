@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0E5B54">
+<title>IPSS 症状自评 · 福州大学附属省立医院泌尿外科</title>
+<meta name="description" content="国际前列腺症状评分（IPSS）自评问卷，福州大学附属省立医院泌尿外科。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230E5B54'/%3E%3Cpath d='M16 7v18M7 16h18' stroke='%23F7F5F1' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap">
+<style>
+:root{
+  --bg:#F6F4EF; --surface:#FFFFFF; --ink:#182A28; --muted:#5F6F6C;
+  --brand:#0E5B54; --brand2:#14746B; --line:#E3DED4; --gold:#A9873F;
+  --ok:#2C7A5B; --warn:#B0761F; --bad:#A23B3E;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  font-size:15px;line-height:1.65;
+}
+a{color:var(--brand)}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px}
+
+/* 顶部院名 */
+.ribbon{
+  background:var(--brand);color:#F3F1EA;font-size:12.5px;letter-spacing:.08em;
+  padding:9px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;
+}
+.ribbon .dept{opacity:.82;letter-spacing:.12em}
+
+/* Hero */
+.hero{background:var(--brand);color:#F7F5F1;padding:26px 0 30px;position:relative;overflow:hidden}
+.hero:after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(120% 90% at 88% -10%,rgba(255,255,255,.10),transparent 60%);
+  pointer-events:none;
+}
+.hero .kicker{
+  margin:0 0 10px;font-size:12px;letter-spacing:.22em;color:#CFE0DB;text-transform:none;
+}
+.hero h1{
+  font-family:"Noto Serif SC","Songti SC",serif;font-weight:700;
+  font-size:34px;line-height:1.22;margin:0 0 12px;letter-spacing:.01em;
+}
+.hero .lead{margin:0;color:#DCEBE6;font-size:14.5px;max-width:56ch}
+.hero .meta{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0;padding:0}
+.hero .meta li{
+  font-size:12.5px;padding:5px 11px;border:1px solid rgba(247,245,241,.34);
+  border-radius:999px;color:#EAF3EF;background:rgba(255,255,255,.05);
+}
+.hero .rule{height:2px;background:var(--gold);width:46px;margin:18px 0 0}
+
+/* 内容 */
+main{padding:22px 0 120px}
+.notice{
+  background:#FFFDF6;border:1px solid #EADFC4;border-left:3px solid var(--gold);
+  border-radius:10px;padding:13px 15px;font-size:13px;color:#5B5140;margin-bottom:18px;
+}
+.notice b{color:#3E3527}
+.sec-title{
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  margin:0 0 12px;
+}
+.sec-title h2{
+  font-family:"Noto Serif SC",serif;font-size:19px;margin:0;font-weight:600;letter-spacing:.02em;
+}
+.sec-title span{font-size:12.5px;color:var(--muted)}
+
+/* 题目卡 */
+.q{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:16px 16px 14px;margin-bottom:12px;
+  box-shadow:0 1px 0 rgba(24,42,40,.03);
+}
+.q-head{display:flex;gap:11px;align-items:flex-start;margin-bottom:12px}
+.q-no{
+  flex:0 0 auto;width:26px;height:26px;border-radius:50%;
+  display:grid;place-items:center;font-size:12.5px;font-weight:700;
+  background:#EDF3F1;color:var(--brand);border:1px solid #D8E4E0;
+}
+.q-t{font-weight:600;font-size:15.5px;margin:0 0 2px}
+.q-d{font-size:13px;color:var(--muted);margin:0}
+.opts{display:grid;grid-template-columns:1fr;gap:7px}
+@media(min-width:600px){.opts{grid-template-columns:1fr 1fr}}
+.opt{
+  display:flex;align-items:center;gap:10px;cursor:pointer;
+  border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  background:#FBFBF9;transition:border-color .15s,background .15s;
+  -webkit-tap-highlight-color:transparent;
+}
+.opt:hover{border-color:#C9D8D3}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt .num{
+  flex:0 0 auto;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;
+  font-size:12px;font-weight:700;color:var(--brand);background:#EDF3F1;border:1px solid #D8E4E0;
+}
+.opt .txt{font-size:13.5px;color:#3B4A47;line-height:1.4}
+.opt:has(input:checked){
+  border-color:var(--brand);background:#F1F7F5;
+  box-shadow:inset 0 0 0 1px var(--brand);
+}
+.opt:has(input:checked) .num{background:var(--brand);color:#fff;border-color:var(--brand)}
+.opt:has(input:checked) .txt{color:var(--brand);font-weight:600}
+.opt:focus-within{outline:2px solid #9CC3BC;outline-offset:2px}
+
+/* 分值滑块 */
+.rng{margin-top:2px}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;display:block;
+  width:100%;height:28px;margin:0;background:transparent;cursor:pointer;--p:0%;
+}
+input[type=range]::-webkit-slider-runnable-track{
+  height:8px;border-radius:99px;
+  background:linear-gradient(90deg,var(--brand) 0 var(--p),#E3ECE8 var(--p) 100%);
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:24px;height:24px;border-radius:50%;
+  background:var(--brand);border:3px solid #fff;
+  box-shadow:0 1px 5px rgba(14,91,84,.3);margin-top:-8px;
+}
+input[type=range]::-moz-range-track{height:8px;border-radius:99px;background:#E3ECE8}
+input[type=range]::-moz-range-progress{height:8px;border-radius:99px;background:var(--brand)}
+input[type=range]::-moz-range-thumb{
+  width:18px;height:18px;border:3px solid #fff;border-radius:50%;
+  background:var(--brand);box-shadow:0 1px 5px rgba(14,91,84,.3);
+}
+input[type=range]:focus-visible{outline:2px solid #9CC3BC;outline-offset:4px;border-radius:99px}
+.rng .rl{position:relative;height:15px;margin-top:1px}
+.rng .rl span{position:absolute;top:0;font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.rng .rv{
+  margin-top:8px;display:inline-block;font-size:12.5px;color:var(--brand);
+  background:#F1F7F5;border:1px solid #DEEAE5;border-radius:7px;padding:5px 11px;
+}
+.rng.unset input[type=range]::-webkit-slider-thumb{background:#B9C9C5}
+.rng.unset .rv{color:var(--muted);background:#FAFAF7;border-color:var(--line)}
+
+/* 底部操作条 */
+.bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:20;
+  background:rgba(255,253,249,.94);backdrop-filter:blur(8px);
+  border-top:1px solid var(--line);
+  padding:10px 18px calc(10px + env(safe-area-inset-bottom));
+}
+.bar-in{max-width:760px;margin:0 auto;display:flex;align-items:center;gap:14px}
+.prog{flex:1;min-width:0}
+.prog .lab{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;margin-bottom:5px}
+.prog .track{height:5px;background:#E7E3DA;border-radius:99px;overflow:hidden}
+.prog .fill{height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--brand2));transition:width .25s}
+.btn{
+  appearance:none;border:0;cursor:pointer;font:inherit;font-weight:600;
+  padding:11px 20px;border-radius:10px;background:var(--brand);color:#fff;
+  min-height:44px;letter-spacing:.02em;
+}
+.btn:disabled{background:#C9D3D0;cursor:not-allowed}
+.btn.ghost{background:#fff;color:var(--brand);border:1px solid var(--brand)}
+.btn.line{background:#fff;color:var(--muted);border:1px solid var(--line)}
+
+/* 结果 */
+#resultArea{display:none;scroll-margin-top:14px}
+#formArea{scroll-margin-top:14px}
+.score-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:18px;
+  padding:22px 20px;box-shadow:0 2px 12px rgba(24,42,40,.06);
+}
+.score-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sc{background:#FAFAF7;border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-width:0}
+.sc.main{grid-column:1/-1;background:#F1F7F5;border-color:#D5E4DF;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.sc .k{font-size:11.5px;color:var(--muted);letter-spacing:.03em}
+.sc .n{font-family:"Noto Serif SC",serif;font-weight:700;color:var(--brand);line-height:1.05;font-size:30px;margin-top:3px}
+.sc .n span{font-family:"Noto Sans SC",sans-serif;font-size:12px;font-weight:400;color:var(--muted);margin-left:2px}
+.sc.main .n{font-size:46px;margin-top:0}
+.sc .sub{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.sc.qol{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.sc.qol .sub{margin:0;font-size:12.5px;color:#3B4A47}
+@media(min-width:600px){
+  .score-grid{grid-template-columns:repeat(3,1fr)}
+  .sc.qol{grid-column:auto;display:block}
+  .sc.qol .sub{margin-top:4px}
+}
+.band{
+  display:inline-block;font-size:13px;font-weight:700;padding:4px 12px;border-radius:999px;
+}
+.band.mild{background:#EAF4EF;color:var(--ok);border:1px solid #CBE3D7}
+.band.mod{background:#FBF1E2;color:var(--warn);border:1px solid #ECD6B2}
+.band.sev{background:#F8E7E7;color:var(--bad);border:1px solid #E8C9C9}
+.scale{margin:18px 0 6px}
+.scale .tr{height:8px;border-radius:99px;background:linear-gradient(90deg,#8FC3AC 0 20%,#E6B96F 20% 57%,#D08B8B 57% 100%);position:relative}
+.scale .mk{position:absolute;top:-5px;width:3px;height:18px;background:#182A28;border-radius:2px;transform:translateX(-50%)}
+.scale .ticks{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:6px}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 0}
+.kv div{background:#FAFAF7;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.kv .k{font-size:11.5px;color:var(--muted)}
+.kv .v{font-size:14px;font-weight:600;margin-top:2px}
+.advice{margin:18px 0 0;font-size:13.5px;color:#3B4A47;line-height:1.75;background:#F3F7F5;border-radius:10px;padding:12px 14px}
+.disclaim{font-size:12px;color:var(--muted);margin:14px 0 0;line-height:1.7}
+.detail{margin-top:16px;border-top:1px dashed var(--line);padding-top:12px}
+.detail summary{cursor:pointer;font-size:13px;color:var(--brand);font-weight:600}
+.detail ul{list-style:none;margin:10px 0 0;padding:0;font-size:12.5px;color:var(--muted)}
+.detail li{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dotted #EDE9E0}
+.detail li b{color:var(--ink);font-weight:600}
+.detail li.grp{background:#F1F7F5;border-bottom:0;border-radius:6px;padding:7px 10px;margin:8px 0 4px;color:var(--brand);font-weight:600;font-size:12px}
+.detail li.grp b{color:var(--brand)}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+
+/* 各项得分：每题一行，选中分值实心 */
+.items{margin-top:18px;border-top:1px dashed var(--line);padding-top:4px}
+.grp-h{display:flex;justify-content:space-between;align-items:center;margin:15px 0 4px;font-size:12.5px;color:var(--brand);font-weight:600;letter-spacing:.02em}
+.grp-h b{font-size:12px}
+.item{padding:9px 0;border-bottom:1px dotted #EDE9E0}
+.item:last-child{border-bottom:0}
+.item-top{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
+.item-q{font-size:11px;font-weight:700;color:var(--brand);background:#EDF3F1;border:1px solid #DCE8E3;border-radius:5px;padding:1px 6px;letter-spacing:.04em}
+.item-t{font-size:13.5px;font-weight:600;color:var(--ink)}
+.item-v{margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap}
+.pills{display:flex;gap:6px}
+.pill{
+  flex:1 1 0;min-width:0;height:34px;display:grid;place-items:center;
+  border-radius:9px;background:#E8F0EC;border:1px solid #DEEAE5;
+  color:#5F6F6C;font-size:13px;font-weight:600;
+}
+.pill.on{background:var(--brand);border-color:var(--brand);color:#fff;box-shadow:0 2px 6px rgba(14,91,84,.22)}
+
+/* 结果页：紧凑，单屏可见 */
+body.result-mode .hero{display:none}
+body.result-mode .foot{display:none}
+body.result-mode main{padding-top:14px;padding-bottom:18px}
+.score-card{padding:18px 16px;border-radius:14px}
+.res-head{display:flex;justify-content:space-between;align-items:baseline;font-size:11.5px;color:var(--muted);letter-spacing:.05em;margin-bottom:10px}
+.res-top{display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:10px}
+.big{font-family:"Noto Serif SC",serif;font-size:50px;line-height:1;font-weight:700;color:var(--brand)}
+.big-side{display:flex;flex-direction:column;gap:5px}
+.big-side .of{font-size:11px;color:var(--muted)}
+.band{font-size:11.5px;padding:3px 9px}
+.scale{margin:0}
+.scale .tr{height:6px}
+.scale .mk{top:-4px;height:14px;width:2px}
+.scale .ticks{position:relative;display:block;height:13px;margin-top:3px;font-size:9.5px;color:var(--muted)}
+.scale .ticks span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.tcell{background:#FAFAF7;border:1px solid var(--line);border-radius:9px;padding:9px 10px;min-width:0}
+.tcell .k{display:block;font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tcell .k span{color:#3B4A47}
+.tcell .v{display:block;font-family:"Noto Serif SC",serif;font-size:22px;font-weight:700;color:var(--brand);line-height:1.2}
+.tcell .v small{font-family:"Noto Sans SC",sans-serif;font-size:10.5px;font-weight:400;color:var(--muted);margin-left:1px}
+.tcell .s{display:block;font-size:9.5px;color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.items{margin-top:14px;border-top:1px dashed var(--line);padding-top:2px}
+.items .gh{display:flex;justify-content:space-between;font-size:11px;color:var(--brand);font-weight:600;margin:10px 0 2px}
+.it{display:grid;grid-template-columns:25px 1fr 96px 16px;gap:9px;align-items:center;padding:6px 0;border-bottom:1px dotted #EFEBE3}
+.it:last-child{border-bottom:0}
+.it .c{font-size:9.5px;color:var(--brand);background:#EDF3F1;border-radius:4px;text-align:center;padding:1px 0}
+.it .n{font-size:12.5px;color:#3B4A47;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.it .bars{display:flex;gap:3px}
+.it .bars i{flex:1;height:8px;border-radius:2px;background:#E3ECE8}
+.it .bars i.on{background:var(--brand)}
+.it .v{font-size:10.5px;color:var(--muted);text-align:right}
+.advice{font-size:12px;line-height:1.5;margin:10px 0 0;padding:8px 10px;border-radius:8px}
+.disclaim{font-size:10px;margin:8px 0 0;line-height:1.5}
+.acts{margin-top:10px;gap:8px}
+.acts .btn{padding:9px 16px;min-height:40px;font-size:13.5px}
+
+.foot{max-width:760px;margin:0 auto;padding:0 18px 40px;font-size:12px;color:var(--muted);line-height:1.8}
+.foot .sep{height:1px;background:var(--line);margin:18px 0 14px}
+
+@media print{
+  .ribbon,.bar,.acts,.detail{display:none}
+  body{background:#fff}
+  .hero{background:#fff;color:#182A28;padding:10px 0}
+  .hero .lead,.hero .meta li{color:#444}
+  .hero .meta li{border-color:#ccc}
+  #formArea{display:none}
+  #resultArea{display:block}
+}
+</style>
+</head>
+<body>
+
+<div class="ribbon">
+  <span>福州大学附属省立医院</span>
+  <span class="dept">泌尿外科</span>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">国际前列腺症状评分 · IPSS</p>
+    <h1>前列腺症状自评</h1>
+    <p class="lead">本问卷用于评估前列腺增生相关症状对日常生活的影响。请按<b>过去一个月</b>的实际情况作答，结果可现场反馈给医生。</p>
+    <div class="rule"></div>
+    <ul class="meta">
+      <li>共 8 题</li>
+      <li>约 2 分钟</li>
+      <li>自动计分</li>
+    </ul>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="formArea">
+    <div class="notice">
+      <b>填写说明：</b>拖动或点击滑块选择分数，滑块下方的文字会说明该分值代表的情形（如前 7 题 0–5 分、第 8 题 0–6 分）。全部作答后即可查看结果。
+    </div>
+    <div class="sec-title">
+      <h2>症状评估</h2>
+      <span>过去一个月内</span>
+    </div>
+    <form id="ipssForm" novalidate></form>
+  </section>
+
+  <section id="resultArea" aria-live="polite">
+    <div class="score-card">
+      <div class="res-head">
+        <span>评估结果</span>
+        <span id="rTime"></span>
+      </div>
+      <div class="res-top">
+        <div class="big" id="rScore">—</div>
+        <div class="big-side">
+          <span class="of">分 / 35</span>
+          <span class="band" id="rBand">—</span>
+        </div>
+        <div class="scale">
+          <div class="tr"><div class="mk" id="rMark" style="left:0%"></div></div>
+          <div class="ticks"><span style="left:0;transform:none">0</span><span style="left:20%">7</span><span style="left:54%">19</span><span style="left:100%;transform:translateX(-100%)">35</span></div>
+        </div>
+      </div>
+      <div class="three">
+        <div class="tcell"><span class="k">储尿期 IPSS</span><span class="v" id="rStorage">—<small>/15</small></span></div>
+        <div class="tcell"><span class="k">排尿期 IPSS</span><span class="v" id="rVoiding">—<small>/20</small></span></div>
+        <div class="tcell"><span class="k">生活质量 QoL</span><span class="v" id="rQolNum">—<small>/6</small></span><span class="s" id="rQol">—</span></div>
+      </div>
+      <div class="items" id="rItems"></div>
+      <p class="advice" id="rAdvice"></p>
+      <p class="disclaim">仅用于症状自评，不能替代医生诊断；出现急性尿潴留、肉眼血尿或发热请及时就医。</p>
+      <div class="acts">
+        <button class="btn" id="btnCopy" type="button">复制结果给医生</button>
+        <button class="btn ghost" id="btnAgain" type="button">重新填写</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bar" id="bar">
+  <div class="bar-in">
+    <div class="prog">
+      <div class="lab"><span id="progText">已完成 0 / 8</span><span id="progPct">0%</span></div>
+      <div class="track"><div class="fill" id="progFill"></div></div>
+    </div>
+    <button class="btn" id="btnSubmit" type="button" disabled>查看结果</button>
+  </div>
+</footer>
+
+<div class="foot">
+  <div class="sep"></div>
+  福州大学附属省立医院 泌尿外科 · IPSS 症状自评<br>
+  如对题目有疑问，请咨询现场医护人员。
+</div>
+
+<script>
+(function(){
+  var O6=[
+    {v:0,t:'没有'},
+    {v:1,t:'5 次中少于 1 次'},
+    {v:2,t:'少于一半时间'},
+    {v:3,t:'大约一半时间'},
+    {v:4,t:'超过一半时间'},
+    {v:5,t:'几乎总是'}
+  ];
+  var ON=[
+    {v:0,t:'0 次'},{v:1,t:'1 次'},{v:2,t:'2 次'},
+    {v:3,t:'3 次'},{v:4,t:'4 次'},{v:5,t:'5 次及以上'}
+  ];
+  var OQ=[
+    {v:0,t:'很好'},{v:1,t:'满意'},{v:2,t:'大致满意'},{v:3,t:'还可以'},
+    {v:4,t:'不太满意'},{v:5,t:'苦恼'},{v:6,t:'很糟'}
+  ];
+  var QS=[
+    {id:'q1',t:'排尿不尽感',d:'过去一个月，您排尿后是否经常感觉膀胱没有完全排空？',o:O6},
+    {id:'q2',t:'尿频',d:'过去一个月，您排尿后不到两小时又要再次排尿的频率如何？',o:O6},
+    {id:'q3',t:'尿流中断',d:'过去一个月，您排尿时是否经常中断后又重新开始？',o:O6},
+    {id:'q4',t:'尿急',d:'过去一个月，您是否经常难以憋尿、必须马上排尿？',o:O6},
+    {id:'q5',t:'尿流变细',d:'过去一个月，您尿线变细、尿流减弱的频率如何？',o:O6},
+    {id:'q6',t:'排尿费力',d:'过去一个月，您是否需要用力或使劲才能开始排尿？',o:O6},
+    {id:'q7',t:'夜尿',d:'过去一个月，您从入睡到起床，通常需要起床排尿几次？',o:ON},
+    {id:'qol',t:'生活质量（QoL）',d:'如果今后的生活中始终伴有现在的排尿症状，您认为如何？',o:OQ}
+  ];
+
+  var form=document.getElementById('ipssForm');
+  var ans={};
+  var KEY='fjsl-ipss-v1';
+
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  function paint(inp){
+    var q=QS.filter(function(x){return x.id===inp.name;})[0];
+    if(!q) return;
+    var mx=Number(inp.max), v=Number(inp.value), wrap=inp.parentNode;
+    inp.style.setProperty('--p',(v/mx*100)+'%');
+    var out=wrap.querySelector('.rv');
+    if(ans[inp.name]===undefined){
+      wrap.classList.add('unset');
+      out.textContent='拖动或点击刻度选择';
+    }else{
+      wrap.classList.remove('unset');
+      out.textContent=v+' · '+(q.o[v]?q.o[v].t:'');
+    }
+  }
+
+  QS.forEach(function(q,i){
+    var card=document.createElement('section');
+    card.className='q';
+    var mx=q.o[q.o.length-1].v, ticks='', k;
+    for(k=0;k<=mx;k++){
+      var left=k/mx*100;
+      var tr = k===0 ? 'none' : (k===mx ? 'translateX(-100%)' : 'translateX(-50%)');
+      ticks+='<span style="left:'+left+'%;transform:'+tr+'">'+k+'</span>';
+    }
+    var val=(ans[q.id]!==undefined?ans[q.id]:0);
+    card.innerHTML='<div class="q-head"><span class="q-no">'+(i+1)+'</span>'
+      +'<div><p class="q-t">'+esc(q.t)+'</p><p class="q-d">'+esc(q.d)+'</p></div></div>'
+      +'<div class="rng'+(ans[q.id]===undefined?' unset':'')+'">'
+      +'<input type="range" name="'+q.id+'" min="0" max="'+mx+'" step="1" value="'+val+'" aria-label="'+esc(q.t)+'">'
+      +'<div class="rl">'+ticks+'</div>'
+      +'<div class="rv">拖动或点击刻度选择</div></div>';
+    form.appendChild(card);
+  });
+
+  try{ var saved=JSON.parse(localStorage.getItem(KEY)||'{}'); Object.keys(saved).forEach(function(k){ans[k]=saved[k];}); }catch(e){}
+
+  // 回填
+  Object.keys(ans).forEach(function(k){
+    var el=form.querySelector('input[name="'+k+'"]');
+    if(el) el.value=ans[k];
+  });
+  Array.prototype.forEach.call(form.querySelectorAll('input[type=range]'),paint);
+
+  function answered(){ return QS.filter(function(q){return ans[q.id]!==undefined;}).length; }
+
+  function refresh(){
+    var n=answered(), pct=Math.round(n/QS.length*100);
+    document.getElementById('progText').textContent='已完成 '+n+' / '+QS.length;
+    document.getElementById('progPct').textContent=pct+'%';
+    document.getElementById('progFill').style.width=pct+'%';
+    var btn=document.getElementById('btnSubmit');
+    btn.disabled = n<QS.length;
+    btn.textContent = n<QS.length ? '还差 '+(QS.length-n)+' 题' : '查看结果';
+  }
+
+  function onInput(e){
+    var t=e.target;
+    if(!t.name) return;
+    ans[t.name]=Number(t.value);
+    try{localStorage.setItem(KEY,JSON.stringify(ans));}catch(err){}
+    paint(t); refresh();
+  }
+  form.addEventListener('input',onInput);
+  form.addEventListener('change',onInput);
+
+  function band(s){
+    if(s<=7) return {k:'mild',t:'轻度',cls:'mild',a:'症状较轻。建议规律饮水、避免憋尿，减少咖啡、浓茶与酒精；如症状加重或出现排尿困难，及时复诊。'};
+    if(s<=19) return {k:'mod',t:'中度',cls:'mod',a:'症状中等。建议到泌尿外科门诊进一步评估，医生可能安排尿流率、残余尿或超声检查，并据此决定观察、用药或进一步治疗。'};
+    return {k:'sev',t:'重度',cls:'sev',a:'症状较重。建议尽快就诊，由泌尿外科医生评估是否需要药物调整或手术治疗；若出现完全排不出尿、下腹剧痛，请立即就医。'};
+  }
+
+  function showResult(){
+    var total=0;
+    QS.slice(0,7).forEach(function(q){ total+=Number(ans[q.id]||0); });
+    var storage=Number(ans.q2||0)+Number(ans.q4||0)+Number(ans.q7||0);
+    var voiding=Number(ans.q1||0)+Number(ans.q3||0)+Number(ans.q5||0)+Number(ans.q6||0);
+    var b=band(total);
+    document.getElementById('rScore').textContent=total;
+    var bandEl=document.getElementById('rBand');
+    bandEl.textContent=b.t; bandEl.className='band '+b.cls;
+    document.getElementById('rStorage').innerHTML=storage+'<small>/15</small>';
+    document.getElementById('rVoiding').innerHTML=voiding+'<small>/20</small>';
+    document.getElementById('rMark').style.left=Math.min(100,total/35*100)+'%';
+    var qol=Number(ans.qol);
+    var qolText=(OQ[qol]||{}).t||'—';
+    document.getElementById('rQolNum').innerHTML=qol+'<small>/6</small>';
+    document.getElementById('rQol').textContent=qolText;
+    document.getElementById('rAdvice').textContent=b.a;
+    var now=new Date(), p=function(n){return (n<10?'0':'')+n;};
+    document.getElementById('rTime').textContent='填写于 '+(now.getMonth()+1)+'-'+p(now.getDate())+' '+p(now.getHours())+':'+p(now.getMinutes());
+
+    var SN={q1:'排尿不尽',q2:'尿频',q3:'尿流中断',q4:'尿急',q5:'尿流变细',q6:'排尿费力',q7:'夜尿',qol:'生活质量'};
+    var box=document.getElementById('rItems');
+    function bars(q){
+      var max=q.o[q.o.length-1].v, cur=Number(ans[q.id]), s='', i;
+      for(i=0;i<max;i++){ s+='<i class="'+(i<cur?'on':'')+'"></i>'; }
+      return s;
+    }
+    function item(q,code){
+      return '<div class="it"><span class="c">'+code+'</span><span class="n">'+(SN[q.id]||esc(q.t))+'</span>'
+        +'<span class="bars">'+bars(q)+'</span><span class="v">'+Number(ans[q.id])+'</span></div>';
+    }
+    box.innerHTML='<div class="gh"><span>储尿期 · 尿频 / 尿急 / 夜尿</span><b>'+storage+'/15</b></div>'
+      + item(QS[1],'Q2') + item(QS[3],'Q4') + item(QS[6],'Q7')
+      + '<div class="gh"><span>排尿期 · 不尽 / 中断 / 变细 / 费力</span><b>'+voiding+'/20</b></div>'
+      + item(QS[0],'Q1') + item(QS[2],'Q3') + item(QS[4],'Q5') + item(QS[5],'Q6')
+      + '<div class="gh"><span>生活质量</span><b>QoL</b></div>'
+      + item(QS[7],'Q8');
+
+    document.getElementById('formArea').style.display='none';
+    document.getElementById('resultArea').style.display='block';
+    document.getElementById('bar').style.display='none';
+    document.body.classList.add('result-mode');
+    document.getElementById('resultArea').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  document.getElementById('btnSubmit').addEventListener('click',function(){
+    if(answered()<QS.length) return;
+    showResult();
+  });
+
+  document.getElementById('btnAgain').addEventListener('click',function(){
+    ans={}; try{localStorage.removeItem(KEY);}catch(e){}
+    form.reset();
+    Array.prototype.forEach.call(form.querySelectorAll('input[type=range]'),paint);
+    document.getElementById('resultArea').style.display='none';
+    document.getElementById('formArea').style.display='block';
+    document.getElementById('bar').style.display='block';
+    document.body.classList.remove('result-mode');
+    refresh();
+    document.getElementById('formArea').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+
+  document.getElementById('btnCopy').addEventListener('click',function(){
+    var total=0; QS.slice(0,7).forEach(function(q){total+=Number(ans[q.id]||0);});
+    var storage=Number(ans.q2||0)+Number(ans.q4||0)+Number(ans.q7||0);
+    var voiding=Number(ans.q1||0)+Number(ans.q3||0)+Number(ans.q5||0)+Number(ans.q6||0);
+    var b=band(total);
+    var lines=['总 IPSS：'+total+' 分（'+b.t+'）','储尿期 IPSS：'+storage+' / 15','排尿期 IPSS：'+voiding+' / 20','生活质量 QoL：'+Number(ans.qol)+'（'+((OQ[Number(ans.qol)]||{}).t||'')+'）'];
+    QS.slice(0,7).forEach(function(q,i){ lines.push('Q'+(i+1)+' '+q.t+'：'+Number(ans[q.id])+' 分'); });
+    lines.push('填写时间：'+new Date().toLocaleString('zh-CN'));
+    var text=lines.join('\n');
+    var done=function(){ var b2=document.getElementById('btnCopy'); var old=b2.textContent; b2.textContent='已复制'; setTimeout(function(){b2.textContent=old;},1600); };
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(function(){fallback(text,done);});
+    }else{ fallback(text,done); }
+  });
+
+  function fallback(text,cb){
+    var ta=document.createElement('textarea');
+    ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try{document.execCommand('copy');cb();}catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  refresh();
+})();
+</script>
+</body>
+</html>
